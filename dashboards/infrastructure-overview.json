@@ -1,0 +1,1985 @@
+{
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "infrastructure-overview"
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "datasource": {
+              "name": "-- Grafana --"
+            },
+            "spec": {}
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true
+        }
+      }
+    ],
+    "cursorSync": "Off",
+    "editable": true,
+    "elements": {
+      "panel-10": {
+        "kind": "Panel",
+        "spec": {
+          "id": 10,
+          "title": "CPU",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "CPU utilization"
+                        },
+                        "itemTag": {
+                          "filter": "component: cpu"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "right",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-11": {
+        "kind": "Panel",
+        "spec": {
+          "id": 11,
+          "title": "Memoria",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Memory utilization"
+                        },
+                        "itemTag": {
+                          "filter": "component: memory"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "timeseries",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
+                "legend": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "displayMode": "table",
+                  "placement": "right",
+                  "showLegend": true,
+                  "sortBy": "Last *",
+                  "sortDesc": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "custom": {
+                    "axisBorderShow": false,
+                    "axisCenteredZero": false,
+                    "axisColorMode": "text",
+                    "axisLabel": "",
+                    "axisPlacement": "auto",
+                    "barAlignment": 0,
+                    "barWidthFactor": 0.6,
+                    "drawStyle": "line",
+                    "fillOpacity": 0,
+                    "gradientMode": "none",
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
+                    "insertNulls": false,
+                    "lineInterpolation": "linear",
+                    "lineWidth": 1,
+                    "pointSize": 5,
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
+                    "showPoints": "auto",
+                    "showValues": false,
+                    "spanNulls": false,
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-20": {
+        "kind": "Panel",
+        "spec": {
+          "id": 20,
+          "title": "Storage",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "(C:): Space utilization"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/: Space utilization"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "FS [/]: Space: Used, in %"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "FS [(C:)]: Space: Used, in %"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [
+                {
+                  "kind": "Transformation",
+                  "group": "reduce",
+                  "spec": {
+                    "options": {
+                      "labelsToFields": false,
+                      "reducers": [
+                        "lastNotNull"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "kind": "Transformation",
+                  "group": "sortBy",
+                  "spec": {
+                    "options": {
+                      "fields": {},
+                      "sort": [
+                        {
+                          "desc": true,
+                          "field": "Last *"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "bargauge",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "displayMode": "basic",
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": false
+                },
+                "maxVizHeight": 300,
+                "minVizHeight": 16,
+                "minVizWidth": 8,
+                "namePlacement": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": true
+                },
+                "showUnfilled": true,
+                "sizing": "auto",
+                "valueMode": "color"
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-21": {
+        "kind": "Panel",
+        "spec": {
+          "id": 21,
+          "title": "Zabbix Agent",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Zabbix agent availability"
+                        },
+                        "itemTag": {
+                          "filter": ""
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "thresholds"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-22": {
+        "kind": "Panel",
+        "spec": {
+          "id": 22,
+          "title": "Alertas",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "alertlist",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "alertInstanceLabelFilter": "",
+                "alertName": "",
+                "dashboardAlerts": false,
+                "groupBy": [],
+                "groupMode": "default",
+                "maxItems": 20,
+                "showInactiveAlerts": false,
+                "sortOrder": 1,
+                "stateFilter": {
+                  "error": true,
+                  "firing": true,
+                  "noData": false,
+                  "normal": false,
+                  "pending": true,
+                  "recovering": true
+                },
+                "viewMode": "list"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-23": {
+        "kind": "Panel",
+        "spec": {
+          "id": 23,
+          "title": "CPU Total",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Number of CPUs"
+                        },
+                        "itemTag": {
+                          "filter": "component: cpu"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Number of cores"
+                        },
+                        "itemTag": {
+                          "filter": "component: cpu"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "light-blue"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-24": {
+        "kind": "Panel",
+        "spec": {
+          "id": 24,
+          "title": "Total Memory",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "Total memory"
+                        },
+                        "itemTag": {
+                          "filter": "component: memory"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "light-blue"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      },
+      "panel-25": {
+        "kind": "Panel",
+        "spec": {
+          "id": 25,
+          "title": "Storage total",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "FS [/]: Space: Total"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "C",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "FS [(C:)]: Space: Total"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "D",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "/: Total space"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "A",
+                    "hidden": false
+                  }
+                },
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "query": {
+                      "kind": "DataQuery",
+                      "group": "alexanderzobnin-zabbix-datasource",
+                      "version": "v0",
+                      "datasource": {
+                        "name": "${zabbix}"
+                      },
+                      "spec": {
+                        "application": {
+                          "filter": ""
+                        },
+                        "countTriggersBy": "",
+                        "evaltype": "0",
+                        "functions": [
+                          {
+                            "added": true,
+                            "def": {
+                              "category": "Alias",
+                              "defaultParams": [],
+                              "name": "setAlias",
+                              "params": [
+                                {
+                                  "name": "alias",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "params": [
+                              "$__zbx_host_name"
+                            ],
+                            "text": "setAlias()"
+                          }
+                        ],
+                        "group": {
+                          "filter": "/.*/"
+                        },
+                        "host": {
+                          "filter": "$host"
+                        },
+                        "item": {
+                          "filter": "(C:): Total space"
+                        },
+                        "itemTag": {
+                          "filter": "component: storage"
+                        },
+                        "macro": {
+                          "filter": ""
+                        },
+                        "options": {
+                          "count": false,
+                          "disableDataAlignment": false,
+                          "showDisabledItems": false,
+                          "skipEmptyValues": false,
+                          "useTrends": "default",
+                          "useZabbixValueMapping": false
+                        },
+                        "proxy": {
+                          "filter": ""
+                        },
+                        "queryType": "0",
+                        "resultFormat": "time_series",
+                        "schema": 12,
+                        "table": {
+                          "skipEmptyValues": false
+                        },
+                        "tags": {
+                          "filter": ""
+                        },
+                        "textFilter": "",
+                        "trigger": {
+                          "filter": ""
+                        }
+                      }
+                    },
+                    "refId": "B",
+                    "hidden": false
+                  }
+                }
+              ],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "stat",
+            "version": "13.0.1",
+            "spec": {
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              },
+              "fieldConfig": {
+                "defaults": {
+                  "thresholds": {
+                    "mode": "percentage",
+                    "steps": [
+                      {
+                        "value": 0,
+                        "color": "green"
+                      },
+                      {
+                        "value": 80,
+                        "color": "red"
+                      }
+                    ]
+                  },
+                  "color": {
+                    "mode": "fixed",
+                    "fixedColor": "light-blue"
+                  }
+                },
+                "overrides": []
+              }
+            }
+          },
+          "transparent": true
+        }
+      }
+    },
+    "layout": {
+      "kind": "GridLayout",
+      "spec": {
+        "items": [
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 0,
+              "width": 12,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-22"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 12,
+              "y": 0,
+              "width": 12,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-21"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 8,
+              "width": 15,
+              "height": 9,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-10"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 15,
+              "y": 8,
+              "width": 9,
+              "height": 9,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-23"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 17,
+              "width": 15,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-11"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 15,
+              "y": 17,
+              "width": 9,
+              "height": 10,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-24"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 27,
+              "width": 15,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-20"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 15,
+              "y": 27,
+              "width": 9,
+              "height": 8,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-25"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": [],
+    "timeSettings": {
+      "timezone": "browser",
+      "from": "now-6h",
+      "to": "now",
+      "autoRefresh": "",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "Infrastructure Overview",
+    "variables": [
+      {
+        "kind": "DatasourceVariable",
+        "spec": {
+          "name": "zabbix",
+          "pluginId": "alexanderzobnin-zabbix-datasource",
+          "refresh": "onDashboardLoad",
+          "regex": "",
+          "current": {
+            "text": "",
+            "value": ""
+          },
+          "options": [],
+          "multi": false,
+          "includeAll": false,
+          "label": "Zabbix Server",
+          "hide": "dontHide",
+          "skipUrlSync": false,
+          "allowCustomValue": true
+        }
+      },
+      {
+        "kind": "QueryVariable",
+        "spec": {
+          "name": "host",
+          "current": {
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "label": "Host",
+          "hide": "dontHide",
+          "refresh": "onDashboardLoad",
+          "skipUrlSync": false,
+          "query": {
+            "kind": "DataQuery",
+            "group": "alexanderzobnin-zabbix-datasource",
+            "version": "v0",
+            "datasource": {
+              "name": "${zabbix}"
+            },
+            "spec": {
+              "application": "",
+              "group": "/.*/",
+              "host": "/.*/",
+              "item": "",
+              "itemTag": "",
+              "queryType": "host",
+              "showDisabledItems": false
+            }
+          },
+          "regex": "",
+          "regexApplyTo": "value",
+          "sort": "disabled",
+          "definition": "",
+          "options": [],
+          "multi": true,
+          "includeAll": true,
+          "allowCustomValue": true
+        }
+      }
+    ],
+    "preferences": {
+      "layout": {
+        "kind": "GridLayout",
+        "spec": {
+          "items": []
+        }
+      }
+    }
+  }
+}

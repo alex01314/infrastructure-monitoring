@@ -1,0 +1,154 @@
+{
+  "zabbix_export": {
+    "version": "7.0",
+    "template_groups": [
+      {
+        "uuid": "846977d1dfed4968bc5f8bdb363285bc",
+        "name": "Templates/Operating systems"
+      }
+    ],
+    "templates": [
+      {
+        "uuid": "ab10866e015e4e209c6709f0c65473ad",
+        "template": "Template Capacity Forecast",
+        "name": "Template Capacity Forecast",
+        "groups": [
+          {
+            "name": "Templates/Operating systems"
+          }
+        ],
+        "items": [
+          {
+            "uuid": "dab42995f11340f981e55a6e93f0839c",
+            "name": "CPU - 7 days average",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.avg.7d",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "avg(//system.cpu.util,7d)"
+          },
+          {
+            "uuid": "1045cb27051d4654bf39fa7dbd947f8d",
+            "name": "CPU - Forecast 30 days",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.forecast.30d",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "forecast(//system.cpu.util,30d,30d)"
+          },
+          {
+            "uuid": "ce5fea3808a3447185692132fea563c3",
+            "name": "CPU - Weekly peak change",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.peak.weekly.change",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "trendmax(//system.cpu.util,7d:now/d)\n-\ntrendmax(//system.cpu.util,7d:now/d-7d)"
+          },
+          {
+            "uuid": "253f77d4e8374b638ae87af2484d8b83",
+            "name": "CPU - Peak 7d",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.peak7d",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "max(//system.cpu.util,7d)"
+          },
+          {
+            "uuid": "3bb52cf8fea046d98be0326aca3e1100",
+            "name": "CPU - Peak 24h",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.peak24h",
+            "delay": "1h",
+            "units": "%",
+            "params": "max(//system.cpu.util,1d)"
+          },
+          {
+            "uuid": "04ee43ece31b4d318d8aa7ba0c3009f2",
+            "name": "CPU - Weekly change",
+            "type": "CALCULATED",
+            "key": "capacity.cpu.weekly.change",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "trendavg(//system.cpu.util,7d:now/d)\n-\ntrendavg(//system.cpu.util,7d:now/d-7d)"
+          },
+          {
+            "uuid": "a9a98739b178456b8abd72e210d01907",
+            "name": "/ - Growth daily",
+            "type": "CALCULATED",
+            "key": "capacity.fs.growth.c",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "B",
+            "params": "(\ntrendavg(//vfs.fs.size[/,used],1d:now/d)\n-\ntrendavg(//vfs.fs.size[/,used],1d:now/d-7d)\n)\n/7"
+          },
+          {
+            "uuid": "cb2463c08155478391863a7843908c59",
+            "name": "Memory - Forecast 30 days",
+            "type": "CALCULATED",
+            "key": "capacity.memory.forecast.30d",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "forecast(//vm.memory.utilization,30d,30d)"
+          },
+          {
+            "uuid": "7b88dfe0c2504890802b397113abb83e",
+            "name": "Memory - Time until 90%",
+            "type": "CALCULATED",
+            "key": "capacity.memory.timeleft.90",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "s",
+            "params": "timeleft(//vm.memory.utilization,30d,90)"
+          },
+          {
+            "uuid": "80b30eddaf95432595e1f1846a804613",
+            "name": "Memory - Weekly change",
+            "type": "CALCULATED",
+            "key": "capacity.memory.weekly.change",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "trendavg(//vm.memory.utilization,7d:now/d)\n-\ntrendavg(//vm.memory.utilization,7d:now/d-7d)"
+          },
+          {
+            "uuid": "33feb87c99b246f79c03e57c501fe7ff",
+            "name": "/ - Forecast 30 days",
+            "type": "CALCULATED",
+            "key": "capacity.root.forecast.30d",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "forecast(//vfs.fs.size[/,pused],30d,30d)"
+          },
+          {
+            "uuid": "2d3a964b1ede473a9cf433583da77bed",
+            "name": "/ - Time until 90%",
+            "type": "CALCULATED",
+            "key": "capacity.root.timeleft.90",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "s",
+            "params": "timeleft(//vfs.fs.size[/,pused],30d,90)"
+          },
+          {
+            "uuid": "9a2cc4ba8d024cb89a93e932d74eb1ab",
+            "name": "/ - Weekly change",
+            "type": "CALCULATED",
+            "key": "capacity.root.weekly.change",
+            "delay": "1h",
+            "value_type": "FLOAT",
+            "units": "%",
+            "params": "trendavg(//vfs.fs.size[/,pused],7d:now/d)\n-\ntrendavg(//vfs.fs.size[/,pused],7d:now/d-7d)"
+          }
+        ]
+      }
+    ]
+  }
+}
