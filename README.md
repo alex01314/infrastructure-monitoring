@@ -1,6 +1,6 @@
 # Infrastructure Monitoring and Capacity Planning
 
-Monitoring portfolio by Alexandre Furtado Violante, combining Zabbix metrics with Grafana dashboards for infrastructure visibility and capacity planning.
+Monitoring combining Zabbix metrics with Grafana dashboards for infrastructure visibility and capacity planning.
 
 ## Included
 
